@@ -4,16 +4,24 @@
 import React, {Component} from 'react'
 import FlatButton from 'material-ui/FlatButton';
 
+import {connect,dispatch} from '../../core/setupApp';
 
-export default class Navigation extends Component {
-    async buttonHandle(){
-        console.log('1');
-        fetch('http://localhost:9090/user').then((res)=>{
-            console.log(res);
-        });
-        console.log('2');
+
+class Navigation extends Component {
+    static propTypes = {
+        user: React.PropTypes.object,
+    }
+
+    buttonHandle(){
+        dispatch({
+            type: 'user/fetchUser',
+            payload: {
+                userId: '1'
+            }
+        })
     }
     render() {
+        const {currentUser} = this.props;
         return (
             <div style={{height:500, width: '100%', position: 'relative', background: '#212121',
                 display: 'flex', overflow: 'scroll'}}>
@@ -21,7 +29,9 @@ export default class Navigation extends Component {
                     <span style={{display: 'fex',
                         color: '#FFFFFF', fontSize: '13em', fontWeight: 'bold', marginLeft: 80}}>Gees</span>
                     <span style={{display: 'flex',
-                        color: '#FFFFFF', fontSize: '1em', marginTop: '-3em', marginLeft: 90}}>Anything you wanna talk about?</span>
+                        color: '#FFFFFF', fontSize: '1em', marginTop: '-3em', marginLeft: 90}}>
+                        Anything you wanna talk about?{currentUser}
+                    </span>
                 </div>
                 <div className='gees-app-bar'
                      style={{
@@ -45,11 +55,9 @@ export default class Navigation extends Component {
     }
 }
 
-const style = {
-    show: {
-
-    },
-    hidden: {
-        display: 'none'
-    }
+function mapStateToProps({currentUser}){
+    return {currentUser}
 }
+
+export default connect(mapStateToProps)(Navigation);
+

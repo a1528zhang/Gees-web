@@ -8,15 +8,25 @@ export async function fetchUserInfo(payload) {
         userId: payload.userId
     };
     console.log('Tag fetched :' + URL + '/api/v1/user/');
-    const result = await fetch(URL + '/api/v1/user/', {
-        method: 'POST',
-        headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            Authorization: 'bearer ' + payload.jwt,
-        },
-        body: bodyJSON,
-    }).then(res => {
-        return res.json();
+    console.log('Tag fetched : we got userId is '+ payload.userId);
+
+    // const result = await fetch(URL + '/api/v1/user/', {
+    //     method: 'POST',
+    //     headers: {
+    //         Accept: 'application/json',
+    //         'Content-Type': 'application/json',
+    //         Authorization: 'bearer ' + payload.jwt,
+    //     },
+    //     body: '',
+    // }).then(res => {
+    //     return res.json();
+    // });
+    return new Promise((resolve, reject)=> {
+        resolve('ok');
+    }).then(res=> {
+        return {
+            userName: 'testName',
+            userId: '01',
+        }
     });
 }

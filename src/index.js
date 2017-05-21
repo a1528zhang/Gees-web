@@ -4,6 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import Router from './router';
 import {app,dispatch} from './core/setupApp';
+import './models'
 import './index.css';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 

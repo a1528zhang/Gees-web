@@ -9,28 +9,30 @@ import {fetchUserInfo} from './api'
 const initState = ()=> ({
     currentUser: {
         userName: '',
-        userId: ''
+        userId: '',
     }
-})
+});
 
 app.model({
     namespace: 'user',
     state: initState(),
     effects : {
         *fetchUser({payload}, {call, put}){
+            console.log('Tag effect');
             const user = yield call(fetchUserInfo, payload);
 
             yield put({
                 type: 'setUpCurrentUser',
                 payload: {
                     userName: user.userName,
-                    userId: userId
+                    userId: user.userId,
                 }
             })
         }
     },
     reducers: {
         setUpCurrentUser(state, {payload}){
+            console.log('Tag reducer :', payload);
             return {
                 ...state,
                 currentUser: {
