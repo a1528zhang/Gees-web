@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Router, Route} from 'dva/router';
-import User from './pages/user'
-import Navigation from './components/navigation/'
+import GameStateBar from './pages/user/gameDemo';
+import Navigation from './components/navigation/';
 
 export default class Routers extends Component {
     static propTypes = {
@@ -12,7 +12,7 @@ export default class Routers extends Component {
         return (
             <Router onUpdate={() => window.scrollTo(0, 0)} history={this.props.history}>
                 <Route path='/' component={Navigation}/>
-                <Route path='/user' component={User}/>
+                <Route path='/game' component={GameStateBar}/>
             </Router>
         );
     }

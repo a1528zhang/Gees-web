@@ -1,12 +1,13 @@
 /**
  * Created by az on 2017/5/19.
  */
-import {URL} from '../../common/const'
+import {URL} from '../../common/const';
 
 export async function fetchUserInfo(payload) {
-    let requestBody = {
-        userId: payload.userId
-    };
+    // let requestBody = {
+    //     userId: payload.userId
+    // };
+    /* eslint-disable no-console */
     console.log('Tag fetched :' + URL + '/api/v1/user/');
     console.log('Tag fetched : we got userId is '+ payload.userId);
 
@@ -21,12 +22,12 @@ export async function fetchUserInfo(payload) {
     // }).then(res => {
     //     return res.json();
     // });
-    return new Promise((resolve, reject)=> {
+    return new Promise((resolve)=> {
         resolve('ok');
-    }).then(res=> {
+    }).then(()=> {
         return {
             userName: 'testName',
             userId: '01',
-        }
+        };
     });
 }

@@ -4,11 +4,11 @@
 import dva from 'dva';
 import createLogger from 'redux-logger';
 
-export const dispatch = (...args) => app._store.dispatch(...args);
 export const app = dva();
+export const dispatch = (...args) => app._store.dispatch(...args);
 export { connect } from 'dva';
 
-function onEffect(effect, {put}) {
+function onEffect(effect) {
     return function*(...args) {
         let { payload } = args[0];
         yield effect({...args, payload: payload});

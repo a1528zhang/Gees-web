@@ -1,10 +1,8 @@
 /**
  * Created by az on 2017/5/19.
  */
-import React , { components } from 'react';
-
-import { app } from '../../core/setupApp'
-import {fetchUserInfo} from './api'
+import { app } from '../../core/setupApp';
+import {fetchUserInfo} from './api';
 
 const initState = ()=> ({
     currentUser: {
@@ -16,8 +14,9 @@ const initState = ()=> ({
 app.model({
     namespace: 'user',
     state: initState(),
-    effects : {
-        *fetchUser({payload}, {call, put}){
+    effects: {
+        *fetchUser({payload}, {call, put}) {
+            /* eslint-disable no-console */
             console.log('Tag effect');
             const user = yield call(fetchUserInfo, payload);
 
@@ -27,11 +26,12 @@ app.model({
                     userName: user.userName,
                     userId: user.userId,
                 }
-            })
+            });
         }
     },
     reducers: {
-        setUpCurrentUser(state, {payload}){
+        setUpCurrentUser(state, {payload}) {
+            /* eslint-disable no-console */
             console.log('Tag reducer :', payload);
             return {
                 ...state,
@@ -39,7 +39,7 @@ app.model({
                     userName: payload.userName,
                     userId: payload.userId
                 }
-            }
+            };
         }
     }
-})
+});
